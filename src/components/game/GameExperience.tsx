@@ -264,7 +264,6 @@ function ContentPanel({
                   LinkedIn <ArrowUpRight size={13} aria-hidden="true" />
                 </a>
               )}
-              aas
               {profile.githubUrl && (
                 <a href={profile.githubUrl} target="_blank" rel="noreferrer">
                   GitHub <ArrowUpRight size={13} aria-hidden="true" />
