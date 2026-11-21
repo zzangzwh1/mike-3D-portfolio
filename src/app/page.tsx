@@ -318,7 +318,10 @@ export default function Home() {
           </div>
           <div className="contact-links">
             {profile.email ? (
-              <a href={`mailto:${profile.email}`} aria-label={`Email ${profile.email}`}>
+              <a
+                href={`mailto:${profile.email}`}
+                aria-label={`Email ${profile.email}`}
+              >
                 {profile.email} <ArrowUpRight size={14} aria-hidden="true" />
               </a>
             ) : (
