@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mike Cho — Interactive Software Engineering Portfolio
 
-## Getting Started
+A recruiter-friendly portfolio with an optional, lazily loaded 3D experience in the Meridian Foundry.
 
-First, run the development server:
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). Create a production build with `npm run build`; run ESLint with `npm run lint`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Update portfolio content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Portfolio copy and case-study details live in `src/content/portfolio.ts`. Keep claims, impact figures, and technologies grounded in verified resume or project information. Add verified social/contact URLs there; until then the interface explicitly marks those details as unavailable.
 
-## Learn More
+Replace `public/resume.pdf` to update the downloadable resume. Do not add a project or profile link until it has been confirmed.
 
-To learn more about Next.js, take a look at the following resources:
+## Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `src/app/` — App Router page, metadata, and global styles.
+- `src/components/portfolio/` — recruiter-first landing experience and navigation.
+- `src/components/game/` — lazy-loaded 3D overlay, panels, and mobile input.
+- `src/game/scene/` — Foundry environment, areas, interaction range, and camera follow.
+- `src/game/player/` — physics-backed movement and procedural idle/walk animation.
+- `src/game/state/` — shared interaction state.
+- `src/content/` — typed, data-driven portfolio details.
+- `public/` — downloadable resume and static assets.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The Quick View is rendered as normal page content and does not require WebGL. Select **Start exploring** to load the R3F/Rapier scene. In the world, use WASD or arrow keys to move, drag to orbit the camera, and press E near an area to interact. Touch devices get on-screen movement controls.
