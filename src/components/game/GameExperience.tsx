@@ -301,13 +301,13 @@ export default function GameExperience({ onExit }: Props) {
   const cameraInput = useRef<CameraInput>({ yaw: 0.56, pitch: 0.32 });
   const dragging = useRef(false);
   const lastPointer = useRef({ x: 0, y: 0 });
-  const [webglAvailable, setWebglAvailable] = useState(true);
+  const [webglAvailable] = useState(() => {
+    if (typeof window === "undefined") return false;
+    const canvas = document.createElement("canvas");
+    return Boolean(canvas.getContext("webgl2") || canvas.getContext("webgl"));
+  });
 
   useEffect(() => {
-    const canvas = document.createElement("canvas");
-    setWebglAvailable(
-      Boolean(canvas.getContext("webgl2") || canvas.getContext("webgl")),
-    );
     setActiveArea(null);
     setNearbyArea(null);
     return () => {
@@ -322,16 +322,19 @@ export default function GameExperience({ onExit }: Props) {
     onExit();
   }, [onExit, setActiveArea, setNearbyArea]);
 
+  const interact = useCallback(
+    (area: AreaId | null = nearbyArea) => {
+      if (!area || activeArea) return;
+      setActiveArea(area);
+    },
+    [activeArea, nearbyArea, setActiveArea],
+  );
+
   useEffect(() => {
     const handleKey = (event: KeyboardEvent) => {
-      if (
-        event.key.toLowerCase() === "e" &&
-        !event.repeat &&
-        nearbyArea &&
-        !activeArea
-      ) {
+      if (event.key.toLowerCase() === "e" && !event.repeat && nearbyArea) {
         event.preventDefault();
-        setActiveArea(nearbyArea);
+        interact(nearbyArea);
       } else if (event.key === "Escape") {
         if (activeArea) setActiveArea(null);
         else exit();
@@ -339,7 +342,7 @@ export default function GameExperience({ onExit }: Props) {
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [activeArea, exit, nearbyArea, setActiveArea]);
+  }, [activeArea, exit, interact, nearbyArea, setActiveArea]);
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
     if (!(event.target instanceof HTMLCanvasElement)) return;
@@ -430,12 +433,18 @@ export default function GameExperience({ onExit }: Props) {
       </div>
 
       {nearbyArea && !activeArea && (
-        <div className="interaction-prompt" role="status">
+        <button
+          className="interaction-prompt"
+          type="button"
+          onClick={() => interact(nearbyArea)}
+          aria-label={`Interact with ${areaTitles[nearbyArea]}`}
+        >
           <kbd>E</kbd>
           <span>
             Interact with <strong>{areaTitles[nearbyArea]}</strong>
+            <span className="interaction-tap-label">Tap to open</span>
           </span>
-        </div>
+        </button>
       )}
 
       <TouchControls />

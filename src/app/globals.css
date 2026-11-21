@@ -1471,13 +1471,28 @@ kbd {
   color: rgba(239, 239, 225, .74);
   font-size: 12px;
   transform: translateX(-50%);
-  pointer-events: none;
+  cursor: pointer;
+  pointer-events: auto;
   backdrop-filter: blur(12px);
+}
+
+.interaction-prompt:hover {
+  border-color: rgba(228, 230, 216, .45);
+  background: rgba(30, 45, 44, .96);
+}
+
+.interaction-prompt:focus-visible {
+  outline: 2px solid #d59b6d;
+  outline-offset: 3px;
 }
 
 .interaction-prompt strong {
   color: #f0c39a;
   font-weight: 500;
+}
+
+.interaction-tap-label {
+  display: none;
 }
 
 .game-overlay kbd {
@@ -2260,11 +2275,21 @@ kbd {
 
   .interaction-prompt {
     bottom: 24px;
-    left: 58%;
+    right: 12px;
+    left: auto;
     max-width: calc(100vw - 165px);
     padding: 9px 10px;
     font-size: 9px;
-    white-space: nowrap;
+    text-align: left;
+    transform: none;
+    white-space: normal;
+  }
+
+  .interaction-tap-label {
+    display: block;
+    margin-top: 3px;
+    color: rgba(239, 239, 225, .55);
+    font-size: 8px;
   }
 }
 
