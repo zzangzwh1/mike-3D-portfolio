@@ -142,7 +142,7 @@ export const experience = [
     role: "Software Engineer",
     dates: "January 2024 – Present",
     highlights: [
-      "Develop and support enterprise applications for Government of Alberta Advanced Education, including Learner Registry, Stakeholder Registry, Provincial Education Directory, and Security Identity and Access Management System, using C# and .NET Framework.",
+      "Develop and support enterprise applications for Government of Alberta Advanced Education, including Learner Registry, Stakeholder Registry, Provincial Education Directory, and Security Identity and Access Management System, using .NET, .NET Framework, Angular, TypeScript, JavaScript, jQuery, and SQL Server.",
       "Work across authentication and single sign-on flows using SAML 2.0, OpenID Connect, and Windows Authentication, integrating with Microsoft Entra ID and ADFS and working with JWTs and SAML assertions.",
       "Apply role-based and claims-based authorization to protect application features and APIs; use Active Directory and LDAP for enterprise user and group information.",
       "Maintain application data and persistence with SQL Server, Entity Framework, and ADO.NET, supporting user, role, permission, and audit-related workflows.",
@@ -167,7 +167,7 @@ export const experience = [
     role: "Full-Stack Developer Intern",
     dates: "January 2021 – September 2021",
     highlights: [
-      "Developed React application features and CRUD workflows, integrating with Java Spring Boot REST APIs.",
+      "Developed React application features and CRUD workflows, integrating with Java Spring Boot REST APIs Oracle SQL.",
       "Worked with a business analyst and senior engineer to clarify requirements and deliver maintainable changes.",
     ],
   },
